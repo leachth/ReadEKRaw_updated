@@ -1,7 +1,7 @@
 # Parse GPGGA string
 
-parseGPGGAstring_updated = function(y, date.real) {
-    #parse time and get correct date out of header 
+parseGPGGAstring = function(y, date.real) {
+    #parse time and get correct date out of header
         yy = substr(y, 8, 17) # time in hhmmss.sss from string
         dd = date.real # get correct date out of header - saved in workspace of function
         ddd = substr(dd,1,10) # get just the date
@@ -23,15 +23,15 @@ parseGPGGAstring_updated = function(y, date.real) {
         long = longdeg + longmin  # decimal degrees
     } else {
         long = -(longdeg + longmin)
-    } 
+    }
     fixquality = as.numeric(substr(y, 44, 44))
     numsatellites = as.numeric(substr(y, 46, 47))
     altitude = as.numeric(substr(y, 53,57)) # meters
-GPSdata = list(time=time, 
-               lat=lat, 
-               long=long, 
-               fixquality = fixquality, 
-               numsatellites = numsatellites, 
+GPSdata = list(time=time,
+               lat=lat,
+               long=long,
+               fixquality = fixquality,
+               numsatellites = numsatellites,
                altitude = altitude
                )
 GPSdata
