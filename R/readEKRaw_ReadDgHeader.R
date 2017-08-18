@@ -65,7 +65,10 @@ readEKRaw_ReadDgHeader = function(fid) {
         
 		# convert NT time 
 			ntSecs = (highdatetime	* 2^32 + lowdatetime)/ 10000000
-			dgTime = as.POSIXct(ntSecs, origin = "1601-01-01", tz = "GMT") # time zone defaults to GMT, can set differently if needed
+			dgTime = ntSecs - 11644473600
+			class(dgTime) = c("POSIXct", "POSIXt")
+			attr(dgTime, "tzone") = "GMT"
+			#dgTime = as.POSIXct(ntSecs, origin = "1601-01-01", tz = "GMT") # time zone defaults to GMT, can set differently if needed
 	
 	return(list(dgType = dgType, dgTime = dgTime))
 					
